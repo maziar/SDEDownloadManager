@@ -25,8 +25,8 @@
 //  SOFTWARE.
 //
 
+import Foundation
 import UIKit
-
 /**
  `DownloadTrackerCell` is the default UITableViewCell used in `DownloadListController`. Its style is 
  `.subtitle`. 
@@ -50,7 +50,7 @@ import UIKit
  1. `cellImageViewStyle`: display an icon, or index, or none.
  2. `isFileNamePriorThanURL`: display file name or its download URL.
  */
-open class DownloadTrackerCell: UITableViewCell{
+open class DownloadTrackerCell: UITableViewCell {
     static var removeLeftMargin: Bool = true
     static var detailLabelFontSize: CGFloat = 12 //UILabel's default font size is 17 points.
     static var displaySpeedInfo: Bool = false
@@ -76,7 +76,7 @@ open class DownloadTrackerCell: UITableViewCell{
         configureContent()
     }
     
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
         configureContent()
     }
@@ -170,7 +170,7 @@ open class DownloadTrackerCell: UITableViewCell{
         }
     }
     
-    @objc func touchAccessoryButton(_ button: UIButton, for controlEvents: UIControlEvents) {
+    @objc func touchAccessoryButton(_ button: UIButton, for controlEvents: UIControl.Event) {
         accessoryButtonDelegate?.tableViewCell(self, didTouch: button, for: controlEvents)
     }
     

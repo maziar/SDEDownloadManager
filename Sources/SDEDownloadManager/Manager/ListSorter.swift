@@ -26,6 +26,7 @@
 
 
 import Foundation
+import UIKit
 
 internal class ListSorter {
     unowned var dm: SDEDownloadManager

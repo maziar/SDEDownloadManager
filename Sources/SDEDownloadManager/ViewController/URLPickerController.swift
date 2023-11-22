@@ -25,6 +25,7 @@
 //  SOFTWARE.
 //
 
+import Foundation
 import UIKit
 
 /**
@@ -172,7 +173,7 @@ import UIKit
     /// Provide custom header view. If it returns non-nil, tableView(_:titleForHeaderInSection:) is ignored.
     override open func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.size.width, height: 40))
-        headerView.autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight]
+        headerView.autoresizingMask = [UIView.AutoresizingMask.flexibleWidth, UIView.AutoresizingMask.flexibleHeight]
         actionButton.frame = headerView.bounds
         actionButton.center = headerView.center
         headerView.addSubview(actionButton)
@@ -205,8 +206,8 @@ import UIKit
     
     // MARK: - Button Action
     lazy var actionButton: UIButton = {
-        let button = UIButton(type: UIButtonType.roundedRect)
-        button.autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight]
+        let button = UIButton(type: UIButton.ButtonType.roundedRect)
+        button.autoresizingMask = [UIView.AutoresizingMask.flexibleWidth, UIView.AutoresizingMask.flexibleHeight]
         button.setTitle(cancelActionTitle, for: .normal)
         button.backgroundColor = self.view.tintColor
         button.setTitleColor(UIColor.white, for: .normal)

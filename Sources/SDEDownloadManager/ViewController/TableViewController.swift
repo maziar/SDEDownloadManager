@@ -25,13 +25,13 @@
 //  SOFTWARE.
 //
 
+import Foundation
 import UIKit
-
 /**
  A UITableViewController subclass which could enter multiple selection mode by editButtonItem. 
  `DownloadListController` is its subclass.
  */
-open class SDETableViewController: UITableViewController{
+open class SDETableViewController: UITableViewController {
     /// Overrided to enter edit mode, also multiple selection mode.
     override open var editButtonItem : UIBarButtonItem {return UIBarButtonItem(title: self.editButtonItemTitle, style: .plain, target: self, action: #selector(activateMultiSelectionMode))}
     
@@ -50,7 +50,7 @@ open class SDETableViewController: UITableViewController{
 
     
     /// On iOS 8, implement this method to [enable swipe feature](http://stackoverflow.com/questions/32270533/editactionsforrowatindexpath-not-executing-on-ios-8-with-xcode-7).
-    override open func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {}
+    override open func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {}
     
     private lazy var editButtonItemTitle = DMLS("Button.Edit", comment: "Enter Edit Mode")
     private lazy var doneButtonItemTitle = DMLS("Button.Done", comment: "Exit Edit Mode")
@@ -113,7 +113,7 @@ class CustomTableViewController: UIViewController, UITableViewDataSource, UITabl
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     
-    init(style: UITableViewStyle = .plain){
+    init(style: UITableView.Style = .plain){
         super.init(nibName: nil, bundle: nil)
         let localTableView = UITableView(frame: CGRect.zero, style: style)
         self.tableView = localTableView
@@ -123,7 +123,7 @@ class CustomTableViewController: UIViewController, UITableViewDataSource, UITabl
     private func configureTableView(){
         view.addSubview(tableView)
         tableView.frame = view.frame
-        tableView.autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight]
+        tableView.autoresizingMask = [UIView.AutoresizingMask.flexibleWidth, UIView.AutoresizingMask.flexibleHeight]
         tableView.dataSource = self
         tableView.delegate = self
     }
@@ -147,9 +147,9 @@ class CustomTableViewController: UIViewController, UITableViewDataSource, UITabl
     
     // MARK: UITableView DataSource - Inserting or Deleting Table Rows
     // On iOS 8, implement this method to enable Swipe feature: http://stackoverflow.com/questions/32270533/editactionsforrowatindexpath-not-executing-on-ios-8-with-xcode-7
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {}
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {}
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {return false}
-    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle{return .none}
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle{return .none}
     
     // MARK: UITableView DataSource - Reordering Table Rows
     func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {return false}

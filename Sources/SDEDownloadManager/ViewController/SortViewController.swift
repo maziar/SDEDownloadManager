@@ -25,9 +25,9 @@
 //  SOFTWARE.
 //
 
+import Foundation
 import UIKit
-
-/// SortViewController offers sort options when you touch `sortButtonItem` in `DownloadListController`. 
+/// SortViewController offers sort options when you touch `sortButtonItem` in `DownloadListController`.
 /// It support five sort types and you could custom their order in list.
 internal class SortViewController: SDETableViewController {
     /// A Boolean value indicating whether to display sort order options(.Ascending and .Descending) at the bottom.

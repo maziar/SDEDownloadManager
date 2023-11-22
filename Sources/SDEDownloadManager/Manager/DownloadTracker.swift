@@ -25,6 +25,8 @@
 //  SOFTWARE.
 //
 
+import Foundation
+
 internal class DownloadTracker {
     unowned var downloadManager: SDEDownloadManager
     init(downloadManager: SDEDownloadManager) {
@@ -72,7 +74,7 @@ internal class DownloadTracker {
         self.trackTimer = timer
         // Timer still work when scrolling only in NSRunLoopCommonMode
         // But Timer won't run after app enter background.
-        RunLoop.current.add(timer, forMode: .commonModes)
+        RunLoop.current.add(timer, forMode: .common)
     }
     
     func trackFromBackgroundThread(){
@@ -87,13 +89,13 @@ internal class DownloadTracker {
         DispatchQueue.global(qos: .utility).async { [unowned self] in
             Thread.current.name = "TrackDownloadActivity"
             self.trackTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.trackDownloadActivity), userInfo: nil, repeats: true)
-            RunLoop.current.run(mode: .defaultRunLoopMode, before: .distantFuture)
+            RunLoop.current.run(mode: .default, before: .distantFuture)
         }
     }
     
     @objc func addTimer() {
         self.trackTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(trackDownloadActivity), userInfo: nil, repeats: true)
-        RunLoop.current.run(mode: .defaultRunLoopMode, before: .distantFuture)
+        RunLoop.current.run(mode: .default, before: .distantFuture)
     }
     
     @objc func switchToBackground() {

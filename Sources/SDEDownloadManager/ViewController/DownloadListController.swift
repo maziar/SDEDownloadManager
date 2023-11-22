@@ -25,6 +25,7 @@
 //  SOFTWARE.
 //
 
+import Foundation
 import UIKit
 
 private let ThumbnailViewTag: Int = 1000
@@ -75,7 +76,8 @@ private let RemoveButtonTag: Int = 101
  
  * Custom selection behavior by `didSelectCellHandler` and `didDeselectCellHandler`.
  */
-@objcMembers open class DownloadListController: SDETableViewController, AccessoryButtonDelegate, UIPopoverPresentationControllerDelegate{
+
+@objcMembers open class DownloadListController: SDETableViewController, AccessoryButtonDelegate, UIPopoverPresentationControllerDelegate {
     // MARK: - Init From storyboard/nib File
     /// If init from storyboard/nib file, reassign `downloadManager` after initialization.
     required public init?(coder aDecoder: NSCoder) {
@@ -148,7 +150,7 @@ private let RemoveButtonTag: Int = 101
      - parameter URLString:        The download URL string at this location.
      */
     public init(downloadManager: SDEDownloadManager,
-            tableViewStyle style: UITableViewStyle = .plain,
+                tableViewStyle style: UITableView.Style = .plain,
             configureCell cellClosure: ((_ cell: DownloadTrackerCell, _ indexPath: IndexPath, _ URLString: String) -> Void)? = nil){
         self.downloadManager = downloadManager
         super.init(style: style)
@@ -199,7 +201,7 @@ private let RemoveButtonTag: Int = 101
      - parameter URLString: The download URL string at this location.
      */
     public init(downloadManager: SDEDownloadManager,
-            tableViewStyle style: UITableViewStyle = .plain,
+                tableViewStyle style: UITableView.Style = .plain,
             registerCellClasses cellClasses: [UITableViewCell.Type],
             configureCell cellClosure: @escaping ((_ tableView: UITableView, _ indexPath: IndexPath, _ URLString: String) -> UITableViewCell)){
         self.downloadManager = downloadManager
@@ -548,13 +550,13 @@ private let RemoveButtonTag: Int = 101
         case .downloadList:
             return downloadManager[URLString]
         case .unfinishedList:
-            if let row = unfinishedTasks.index(of: URLString){
+            if let row = unfinishedTasks.firstIndex(of: URLString){
                 return IndexPath(row: row, section: 0)
             }else{
                 return nil
             }
         case .toDeleteList:
-            if let row = downloadManager.toDeleteList?.index(of: URLString){
+            if let row = downloadManager.toDeleteList?.firstIndex(of: URLString){
                 return IndexPath(row: row, section: 0)
             }else{
                 return nil
@@ -579,7 +581,7 @@ private let RemoveButtonTag: Int = 101
      - parameter button: The touched button in the cell.
      - parameter controlEvents: The touch event.
      */
-    public func tableViewCell(_ cell: UITableViewCell, didTouch button: UIButton, for controlEvents: UIControlEvents){
+    public func tableViewCell(_ cell: UITableViewCell, didTouch button: UIButton, for controlEvents: UIControl.Event){
         if accessoryButtonTouchHandler != nil && cellAccessoryButtonStyle == .custom{
             accessoryButtonTouchHandler!(tableView, cell, button)
             return
@@ -740,7 +742,7 @@ private let RemoveButtonTag: Int = 101
     }
     
     lazy var activityView: UIActivityIndicatorView = {
-        let _activityView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+        let _activityView = UIActivityIndicatorView(style: .whiteLarge)
         _activityView.color = UIColor.blue
         _activityView.center = self.view.center
         return _activityView
@@ -954,7 +956,7 @@ private let RemoveButtonTag: Int = 101
     
     /// Returns relative section for index title you touch at right side of tableView. If title has no relative section, return NSNotFound.
     override open func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
-        return downloadManager.sectionTitleList.index(of: title) ?? NSNotFound
+        return downloadManager.sectionTitleList.firstIndex(of: title) ?? NSNotFound
     }
     
     // MARK: Allow to Edit Cell by Control and Row Action
@@ -999,23 +1001,7 @@ private let RemoveButtonTag: Int = 101
     }
 
     /// Decide control style at the left of cell if tableView is editing and allowsMultipleSelectionDuringEditing == false.
-    override open func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
-        // .none: prevent all controls at the left and row action in swipe.
-        // .insert: insert control at the left
-        // .delete: Complex.
-        //
-        // If this method return .insert or .delete, the follow two delegate methods(if implemented) 
-        // handle it:
-        // 1. tableView(_:commitEditingStyle:forRowAtIndexPath:) to handle touch on .insert and .delete
-        // 2. tableView(_:editActionsForRowAtIndexPath:): only handle .delete, this method havs hight
-        //    priority than tableView(_:commitEditingStyle:forRowAtIndexPath:)
-        //
-        // Cell swipe is disabled when tableView.isEditing == true, but to enable cell swipe, this method
-        // must return .delete. And specially, even `tableView(_:editActionsForRowAtIndexPath:)` return nil,
-        // a delete row action is showed at the right.
-        // 
-        // In DownloadListController, make tableView enter editing by editButtonItem or long press
-        // return (manualReordering || tableView.isEditing) ? .none : .delete
+    override open func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return manualReordering ? .none : .delete
     }
     
@@ -1789,7 +1775,9 @@ private let RemoveButtonTag: Int = 101
         // Remove finished tasks in .unfinishedList
         if displayContent == .unfinishedList && !finishedTasks.isEmpty{
             finishedTasks.forEach({ downloadActivityInfo[$0] = nil })
-            let finishedIPs = finishedTasks.flatMap({ unfinishedTasks.index(of: $0) }).sorted(by: >).map({ IndexPath(row: $0, section: 0) })
+            let finishedIPs = finishedTasks.compactMap({
+                unfinishedTasks.firstIndex(of: $0) }).sorted(by: >).map({ IndexPath(row: $0, section: 0)
+                })
             removeSelectionInfo(about: finishedTasks)
             DispatchQueue.main.async(execute: {
                 finishedIPs.forEach({
@@ -2012,7 +2000,8 @@ private let RemoveButtonTag: Int = 101
     /// UIBarButtonItems to use at the left of NavigationItem in edit mode(multiple selection mode). 
     /// There are some predefined UIBarButtonItems. More details in `leftNavigationItemActions`.
     internal lazy var leftButtonItemsInEditMode: [UIBarButtonItem]? = {
-        if let actions = self.leftNavigationItemActionRawValues?.flatMap({NavigationBarAction(rawValue: $0)}), actions.isEmpty == false{
+        if let actions = self.leftNavigationItemActionRawValues?.compactMap({NavigationBarAction(rawValue: $0)}),
+           actions.isEmpty == false {
             return self.generateButtomItemBasedOnNavigationBarActions(actions)
         }
         return self.generateButtomItemBasedOnNavigationBarActions(self.leftNavigationItemActions)
@@ -2055,14 +2044,18 @@ private let RemoveButtonTag: Int = 101
     
     /// UIBarButtonItems to use in the toolbar.
     internal lazy var toolbarButtonItems: [UIBarButtonItem]? = {
-        if let actions = self.toolBarActionRawValues?.flatMap({ToolBarAction(rawValue: $0)}), actions.isEmpty == false{
+        if let actions = self.toolBarActionRawValues?.compactMap({
+            ToolBarAction(rawValue: $0)
+        }), actions.isEmpty == false {
             return self.generateButtonItemBaseOnToolBarActions(actions)
         }
         return self.generateButtonItemBaseOnToolBarActions(self.toolBarActions)
     }()
     
     private func generateButtonItemBaseOnToolBarActions(_ actions: [ToolBarAction]) -> [UIBarButtonItem]{
-        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, 
+                                            target: nil,
+                                            action: nil)
         var items: [UIBarButtonItem] = []//[flexibleSpace]
         actions.forEach({ buttonAction in
             switch buttonAction{

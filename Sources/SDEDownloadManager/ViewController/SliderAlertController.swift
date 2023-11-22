@@ -25,8 +25,8 @@
 //  SOFTWARE.
 //
 
+import Foundation
 import UIKit
-
 /**
  A UIViewController subclass like UIAlertController to display a slider.
  ![](https://raw.githubusercontent.com/seedante/iOS-Note/master/SDEDownloadManager/PresentSliderAlertController.png)
@@ -280,12 +280,12 @@ public class SliderAlertController: UIViewController, UIViewControllerTransition
             containerView.insertSubview(dimmingView, belowSubview: toVC.view)
             dimmingView.center = containerView.center
             dimmingView.bounds = containerView.frame
-            dimmingView.autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight]
+            dimmingView.autoresizingMask = [UIView.AutoresizingMask.flexibleWidth, UIView.AutoresizingMask.flexibleHeight]
             dimmingView.backgroundColor = UIColor(white: 0.0, alpha: 0.5)
             dimmingView.alpha = 0
             
             toVC.view.transform = CGAffineTransform(scaleX: 1, y: 0.8)
-            UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 3, options: UIViewAnimationOptions.allowAnimatedContent, animations: {
+            UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 3, options: UIView.AnimationOptions.allowAnimatedContent, animations: {
                 self.dimmingView.alpha = 1
                 toVC.view.transform = CGAffineTransform.identity
                 }, completion: {_ in

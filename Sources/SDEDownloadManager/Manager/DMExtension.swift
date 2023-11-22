@@ -25,7 +25,9 @@
 //  SOFTWARE.
 //
 
-@objc extension SDEDownloadManager{
+import Foundation
+
+@objc extension SDEDownloadManager {
     // MARK: - Subscript
     /**
      Get the location of download task in `downloadList` based on its download URL string.
@@ -1124,7 +1126,8 @@
         return downloadTaskInfo[URLString]?[TIFileLocationStringKey] as? String
     }
     
-    @nonobjc private func fileByteCountAtRealLocation(ofTask URLString: String) -> Int64?{
+    @nonobjc
+    func fileByteCountAtRealLocation(ofTask URLString: String) -> Int64?{
         guard let filePath = filePath(ofTask: URLString) else{return nil}
         do{
             let attr = try FileManager.default.attributesOfItem(atPath: filePath) as NSDictionary

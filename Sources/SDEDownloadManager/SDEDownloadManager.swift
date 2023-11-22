@@ -25,6 +25,8 @@
 //  SOFTWARE.
 //
 
+import Foundation
+import UIKit
 
 /**
  `SDEDownloadManager` is a download management tool, support background download.
@@ -56,7 +58,7 @@
    when create a download manager in `manager(identifier:manualMode:)`.
  
    Specially, in manual mode, a section in `downloadList` must has a title, and it will lose all section
-   titles when switching from manual mode to predefined mode. And all tasks will be integrated into a 
+   titles when switching from manual mode to predefined mode. And all tasks will be integrated into a
    single section with a placeholder title when switching from predefined mode to manual mode.
  
    In manual mode, reorder tasks by `moveTask(at:to:)` and `moveTasks(inSection:to)`.
@@ -98,7 +100,7 @@
  
  * Authentication
 
-   `SDEDownloadManager` handle part authentication types for you: Basic, Digest, and server trust. For 
+   `SDEDownloadManager` handle part authentication types for you: Basic, Digest, and server trust. For
    other authentication types, you could handle them by `sessionDidReceiveChallengeHandler` and
    `taskDidReceiveChallengeHandler`.
 
@@ -106,7 +108,7 @@
  * Custom Other Behaviors in Session Delegate
  
    `SDEDownloadManager` use `NSURLSessionDownloadTask` to download files, and session delegate is internal,
-    I leave closure interfaces to custom behaviors in session delegate. See MARK: Closures to Custom 
+    I leave closure interfaces to custom behaviors in session delegate. See MARK: Closures to Custom
     Behaviors in Session Delegate.
  
  
@@ -127,12 +129,12 @@
      
      Choose sort mode based on your usage scenario. SDEDownloadManager has two sort mode: manual and
      predefined mode. The two sort modes can switch to each other. Except for obvious sort difference,
-     what's difference between with two modes? 
+     what's difference between with two modes?
      
-     1. Download new file. In predefined mode, you just need to offer download URL, but in manual mode, 
+     1. Download new file. In predefined mode, you just need to offer download URL, but in manual mode,
      you must offer its insert location in `downloadList`, which is `[[String]]` and is designed for
      UITableView/UICollectionView.
-     2. A section in UITableView with `.plain` style can't be distinguished from last section if it 
+     2. A section in UITableView with `.plain` style can't be distinguished from last section if it
      doesn't have a title, so in manual mode, you must offer a title.
 
      Although you can switch between with two sort modes freely, switching from manual mode to predefined
@@ -159,7 +161,7 @@
         }else{
             if identifier == SDEDownloadManager.placeHolderIdentifier{
                 return SDEDownloadManager.placeHolderManager
-            }else{                
+            }else{
                 SDEDownloadManager.initLock.lock()
                 let dm: SDEDownloadManager
                 if let _dm = downloadManagerSet.filter({$0.identifier == identifier}).first{
@@ -190,7 +192,9 @@
             let configuration = URLSessionConfiguration.background(withIdentifier: internaID)
             // If delegateQueue is nil, in session delegate, after a method is returned, next methos is called;
             // otherwise, they are called in call orders, but don't need to wait last method return.
-            self.downloadSession = URLSession(configuration: configuration, delegate: downloadDelegate, delegateQueue: OperationQueue())
+            self.downloadSession = URLSession(configuration: configuration,
+                                              delegate: downloadDelegate as? URLSessionDelegate,
+                                              delegateQueue: OperationQueue())
             super.init()
             downloadDelegate.downloadManager = self
             self.downloadSession.sessionDescription = identifier
@@ -201,9 +205,9 @@
         }
         saveDataIfAppEnterBackground()
 
-        // After force quit and relanch, session delegate wait download manager to load data. 
+        // After force quit and relanch, session delegate wait download manager to load data.
         // Priority of queue to load data should be higher than queue of session delegate,
-        // otherwise that block for a while. Specially can't use BACKGROUND queue here, 
+        // otherwise that block for a while. Specially can't use BACKGROUND queue here,
         // it takes a very long time.
         DispatchQueue.global().async(execute: {
             self.loadData()
@@ -217,7 +221,7 @@
     }
 
     private func saveDataIfAppEnterBackground(){
-        NotificationCenter.default.addObserver(forName: .UIApplicationDidEnterBackground,
+        NotificationCenter.default.addObserver(forName: UIApplication.didEnterBackgroundNotification,
                                                object: nil,
                                                queue: OperationQueue(),
                                                using: { [weak self] _ in
@@ -722,7 +726,7 @@
      with the identifier exists in the memory already, this methos return it directly.
      */
     public let identifier: String
-    /// A Boolean value indicating whether data is loaded. After a SDEDownloadManager object is inited, 
+    /// A Boolean value indicating whether data is loaded. After a SDEDownloadManager object is inited,
     /// it loads data in the background. Usually it's very soon to load data.
     public var isDataLoaded: Bool{
         return _isDataLoaded
@@ -926,7 +930,7 @@
      `percentEncodingURLQueryString` in the extension to encode string.
      
      - parameter successOrFailHandler: A temporary closure to execute after a task is successful, or failed
-     (not include cancelling task) to replace `taskSuccessOrFailHandler` which is executed for every task. 
+     (not include cancelling task) to replace `taskSuccessOrFailHandler` which is executed for every task.
      The default value is nil. Closure parameters `fileLocation` and `error`, only one is not
      nil at the same time. Check parameters in `taskSuccessOrFailHandler` property, they are same.
 
@@ -1997,7 +2001,7 @@
      Under 10000 records: per 1000 records add about 0.5s.
      20000 records about: 9~18s
      */
-    private func loadData(){
+    func loadData(){
         #if DEBUG
             NSLog("Begin to load data for %@", identifier)
             let startTime = Date()
@@ -2305,11 +2309,11 @@
      when user want it.
 
      For NSOperationQueue, a started operation is a unfinished operation, whatever it's executing or not,
-     it takes a quota of `maxConcurrentOperationCount`. For user, an executing operation pause and there 
+     it takes a quota of `maxConcurrentOperationCount`. For user, an executing operation pause and there
      should be one more operation could to execute or start. How to balance the deviation? It's easy.
 
      Use a variable `maxDownloadCount` to replace maxConcurrentOperationCount, initially, maxDownloadCount
-     = maxConcurrentOperationCount. If 
+     = maxConcurrentOperationCount. If
      maxConcurrentOperationCount != OperationQueue.defaultMaxConcurrentOperationCount(-1):
      Pause a operation, downloadQueue.maxConcurrentOperationCount += 1,
      Resume a paused operation, downloadQueue.maxConcurrentOperationCount -= 1.
@@ -2433,7 +2437,7 @@
         guard waittingTaskQueue.count > 0 else {return}
         guard didReachMaxDownloadCount == false else {return}
         
-        // Lanch anothor task to make it like automatic. It should be operation queue's work, but I delay to create an operation 
+        // Lanch anothor task to make it like automatic. It should be operation queue's work, but I delay to create an operation
         // as far as possible, so I have to do it manually.
         startOPSerialQueue.sync(execute: {[unowned self] in
             self.startATaskIfNecessary()
@@ -2685,7 +2689,7 @@
      which means that there will be one section with a placeholder title only. Tasks which have same
      trait string will be integrated into the same section, and trait string is also section title.
      If closure returns nil, task will be in the last section with a placeholder title. Sections are
-     sorted by their titles with predicate `traitAscending`, if `traitAscending` is nil, sections 
+     sorted by their titles with predicate `traitAscending`, if `traitAscending` is nil, sections
      are sorted by their titles in alphabet order.
      
      - parameter traitAscending: A predicate that returns true if the first trail string should be
@@ -2846,7 +2850,7 @@
     /**
      Stop both collecting download activity info and executing `downloadActivityHandler` closure
      immediately. You should call this method to reduce resource consumption after your view disappear;
-     call `beginTrackingDownloadActivity()` to continue after your view appear again. 
+     call `beginTrackingDownloadActivity()` to continue after your view appear again.
      `downloadCompletionHandler` closure won't be executed if call this method.
      */
     public func stopTrackingDownloadActivity(){
@@ -2877,7 +2881,7 @@
      
      - parameter URLString: The URL string of task which you want to request thumbnail for.
      - parameter height: The target height of image to return.
-     - parameter thumbnailHandler: A closure to provide fetched thumbnail. This closure will be called 
+     - parameter thumbnailHandler: A closure to provide fetched thumbnail. This closure will be called
      only when: 1. no cache when calling this method; 2. thumbnail is created successfully.
      - parameter thumbnail: Thumbnail image for the request. And you will find image height is not exactly
      requested height sometimes, but its width is. It's adapted for `DownloadListController`.
@@ -2904,7 +2908,7 @@
      
      - parameter thumbnail: Image to used as thumbnail.
      - parameter URLString: The URL string of task which you want to custom thumbnail for.
-     - parameter cacheInMemoryOnly: If false, thumbnail will be stored. If multiple files need a same 
+     - parameter cacheInMemoryOnly: If false, thumbnail will be stored. If multiple files need a same
      thumbail, e.g., an album art for songs, caching it in memory only could reduce memory usage.
      */
     public func setCustomThumbnail(_ thumbnail: UIImage, forTask URLString: String, cacheInMemoryOnly: Bool) {
@@ -2928,9 +2932,9 @@
         
         var imageExtension: String = ".png"
         let imageData: Data
-        if let data = UIImagePNGRepresentation(thumbnail){
+        if let data = thumbnail.pngData(){
             imageData = data
-        }else if let data = UIImageJPEGRepresentation(thumbnail, 1){
+        }else if let data = thumbnail.jpegData(compressionQuality: 1){
             imageExtension = ".jpg"
             imageData = data
         }else{
@@ -3253,7 +3257,7 @@
      - parameter URLStrings: An array of download URL string of task which you want to clean up in `toDeleteList`.
 
      - returns: A Dictionary includes deleted task info. Key: URL string of deleted task, Value: task
-     original location in `toDeleteList` as a `IndexPath` with section 0, it is to be used in 
+     original location in `toDeleteList` as a `IndexPath` with section 0, it is to be used in
      UITableView/UICollectionView directly. If no task is deleted, return nil.
      */
     public func cleanupToDeleteTasks(_ URLStrings: [String]) -> Dictionary<String, IndexPath>?{
@@ -3298,7 +3302,7 @@
      Restore to-delete tasks in `toDeleteList` back to `downloadList` and return locations of restored
      deleted tasks in `toDeleteList`.
      
-     - parameter URLStrings: An array of download URL string of task which you want to restore in 
+     - parameter URLStrings: An array of download URL string of task which you want to restore in
      `toDeleteList`. If `sortType == .manual`, restored tasks keeps same orders in this parameter.
      
      - parameter indexPath:  Restore location in `downloadList`. If `sortType != .manual`, this
@@ -3369,7 +3373,7 @@
      Update or add meta info for download task.
      
      - parameter info: Meta info to update. Its value should be [property list type](https://developer.apple.com/library/content/documentation/General/Conceptual/DevPedia-CocoaCore/PropertyList.html#//apple_ref/doc/uid/TP40008195-CH44),
-     otherwise it can't be saved. In Swift, all relative primitive value types are compatible, like: String, Data, Date, Bool, 
+     otherwise it can't be saved. In Swift, all relative primitive value types are compatible, like: String, Data, Date, Bool,
      all integer types(e.g., Int, Int8, UInt32), all floating-point types(e.g., Float, Double, CGFloat, except for Float80),
      for collectiontypes, Array and Dictionary consist of these primitive value types are OK.
      

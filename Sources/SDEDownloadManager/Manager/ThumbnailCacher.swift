@@ -27,6 +27,7 @@
 
 
 import AVFoundation
+import UIKit
 /**
  Thumbnail categories and their fetch order: TypeIcon, custom thumbnail(memory only or stored file), from file self(image and video).
  TypeIcon won't be in the cache, otherwise it could be removed because of cache limit.
@@ -281,7 +282,7 @@ internal class ThumbnailCacher {
         
         if let fileLocation = dm.fileURL(ofTask: URLString), (fileLocation as NSURL).checkResourceIsReachableAndReturnError(nil) == true{
             let asset = AVAsset(url: fileLocation as URL)
-            let exactTime = CMTimeMultiplyByFloat64(asset.duration, 0.1)
+            let exactTime = CMTimeMultiplyByFloat64(asset.duration, multiplier: 0.1)
             
             let imageGenerator = AVAssetImageGenerator(asset: asset)
             imageGenerator.maximumSize = CGSize(width: height * 3, height: height)

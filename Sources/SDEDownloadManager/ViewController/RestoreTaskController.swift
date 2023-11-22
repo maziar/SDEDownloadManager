@@ -24,6 +24,8 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 //
+import UIKit
+import Foundation
 
 internal class RestoreTaskController: UITableViewController, UITextFieldDelegate {
     var downloadManager: SDEDownloadManager
@@ -160,9 +162,9 @@ internal class RestoreTaskController: UITableViewController, UITextFieldDelegate
         }else{
             let headerView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.size.width, height: 40))
             headerView.backgroundColor = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1)
-            headerView.autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight]
+            headerView.autoresizingMask = [UIView.AutoresizingMask.flexibleWidth, UIView.AutoresizingMask.flexibleHeight]
             
-            let actionButton = UIButton.init(type: UIButtonType.roundedRect)
+            let actionButton = UIButton.init(type: UIButton.ButtonType.roundedRect)
             actionButton.addTarget(self, action: #selector(insertPlaceHolderSection), for: .touchUpInside)
             actionButton.setTitle(DMLS("Add New Section", comment: "PlaceHolder Section Title for Empty DownloadList in Manual Mode"), for: .normal)
             actionButton.frame = headerView.bounds
@@ -208,14 +210,14 @@ internal class RestoreTaskController: UITableViewController, UITextFieldDelegate
     }
 
     //  remove the control view displayed on the left of cell.
-    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return .none
     }
     
     // MARK: Restore Action
     lazy var restoreButtonItem: UIBarButtonItem = UIBarButtonItem.init(title: DMLS("Button.Restore", comment: "Put Deleted Task Back to Download List"), style: .done, target: self, action: #selector(restore))
     lazy var restoreButton: UIButton = {
-        let button = UIButton.init(type: UIButtonType.system)
+        let button = UIButton.init(type: UIButton.ButtonType.system)
         button.addTarget(self, action: #selector(restore), for: .touchUpInside)
         return button
     }()

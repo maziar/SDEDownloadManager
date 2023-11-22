@@ -32,6 +32,9 @@
   `assignAccessoryButtonDeletegate(_:)` in protocol `DownloadActivityTrackable` and in button's action
   method, send the only protocol method to delegate object.
  */
+import Foundation
+import UIKit
+
 @objc public protocol AccessoryButtonDelegate {
     /**
      Handle button touch event for UITableViewCell.
@@ -40,7 +43,7 @@
      - parameter button: The touched button in the cell.
      - parameter controlEvents: The touch event.
      */
-    func tableViewCell(_ cell: UITableViewCell, didTouch button: UIButton, for controlEvents: UIControlEvents)
+    func tableViewCell(_ cell: UITableViewCell, didTouch button: UIButton, for controlEvents: UIControl.Event)
 }
 
 /**
