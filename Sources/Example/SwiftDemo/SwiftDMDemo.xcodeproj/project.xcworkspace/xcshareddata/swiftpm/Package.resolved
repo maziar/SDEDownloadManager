@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "sdedownloadmanager",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/maziar/SDEDownloadManager.git",
+      "state" : {
+        "branch" : "master",
+        "revision" : "73e22f29c1c656ea015975eec1e82a7f742e982d"
+      }
+    }
+  ],
+  "version" : 2
+}

@@ -3,42 +3,16 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		FD20BD231F6C3A8400506E39 /* SDEDownloadManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDCBF3681F27C02A00E60128 /* SDEDownloadManager.framework */; };
-		FD20BD241F6C3A8400506E39 /* SDEDownloadManager.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FDCBF3681F27C02A00E60128 /* SDEDownloadManager.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FDCBF34E1F27BFB500E60128 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCBF34D1F27BFB500E60128 /* AppDelegate.swift */; };
 		FDCBF3551F27BFB500E60128 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FDCBF3541F27BFB500E60128 /* Assets.xcassets */; };
 		FDCBF3581F27BFB500E60128 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDCBF3561F27BFB500E60128 /* LaunchScreen.storyboard */; };
 		FDCBF3611F27C00A00E60128 /* ConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCBF35F1F27C00A00E60128 /* ConfigurationViewController.swift */; };
 		FDCBF3621F27C00A00E60128 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDCBF3601F27C00A00E60128 /* Main.storyboard */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		FD20BD251F6C3A8400506E39 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FDCBF3631F27C02A00E60128 /* SDEDownloadManager.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = FDFCB9CA1F27BB7200D06E12;
-			remoteInfo = SDEDownloadManager;
-		};
-		FDCBF3671F27C02A00E60128 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FDCBF3631F27C02A00E60128 /* SDEDownloadManager.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = FDFCB9CB1F27BB7200D06E12;
-			remoteInfo = SDEDownloadManager;
-		};
-		FDD704F81F28ACB800E3A3FD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FDCBF3631F27C02A00E60128 /* SDEDownloadManager.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = FDA27CFC1F27CCF5001959C6;
-			remoteInfo = FeatureTests;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		FD20BD271F6C3A8400506E39 /* Embed Frameworks */ = {
@@ -47,7 +21,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				FD20BD241F6C3A8400506E39 /* SDEDownloadManager.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -62,7 +35,6 @@
 		FDCBF3591F27BFB500E60128 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FDCBF35F1F27C00A00E60128 /* ConfigurationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationViewController.swift; sourceTree = "<group>"; };
 		FDCBF3601F27C00A00E60128 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		FDCBF3631F27C02A00E60128 /* SDEDownloadManager.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SDEDownloadManager.xcodeproj; path = ../SDEDownloadManager/SDEDownloadManager.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,7 +42,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FD20BD231F6C3A8400506E39 /* SDEDownloadManager.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,7 +51,6 @@
 		FDCBF3411F27BFB500E60128 = {
 			isa = PBXGroup;
 			children = (
-				FDCBF3631F27C02A00E60128 /* SDEDownloadManager.xcodeproj */,
 				FDCBF34C1F27BFB500E60128 /* DownloadManagerDemo */,
 				FDCBF34B1F27BFB500E60128 /* Products */,
 			);
@@ -107,15 +77,6 @@
 			path = DownloadManagerDemo;
 			sourceTree = "<group>";
 		};
-		FDCBF3641F27C02A00E60128 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				FDCBF3681F27C02A00E60128 /* SDEDownloadManager.framework */,
-				FDD704F91F28ACB800E3A3FD /* FeatureTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -131,9 +92,10 @@
 			buildRules = (
 			);
 			dependencies = (
-				FD20BD261F6C3A8400506E39 /* PBXTargetDependency */,
 			);
 			name = SwiftDMDemo;
+			packageProductDependencies = (
+			);
 			productName = DownloadManagerDemo;
 			productReference = FDCBF34A1F27BFB500E60128 /* SwiftDMDemo.app */;
 			productType = "com.apple.product-type.application";
@@ -160,40 +122,21 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				Base,
 			);
 			mainGroup = FDCBF3411F27BFB500E60128;
+			packageReferences = (
+				3704AACC2B0E3D1400DD394E /* XCRemoteSwiftPackageReference "SDEDownloadManager" */,
+			);
 			productRefGroup = FDCBF34B1F27BFB500E60128 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = FDCBF3641F27C02A00E60128 /* Products */;
-					ProjectRef = FDCBF3631F27C02A00E60128 /* SDEDownloadManager.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				FDCBF3491F27BFB500E60128 /* SwiftDMDemo */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		FDCBF3681F27C02A00E60128 /* SDEDownloadManager.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = SDEDownloadManager.framework;
-			remoteRef = FDCBF3671F27C02A00E60128 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		FDD704F91F28ACB800E3A3FD /* FeatureTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = FeatureTests.xctest;
-			remoteRef = FDD704F81F28ACB800E3A3FD /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		FDCBF3481F27BFB500E60128 /* Resources */ = {
@@ -219,14 +162,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		FD20BD261F6C3A8400506E39 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = SDEDownloadManager;
-			targetProxy = FD20BD251F6C3A8400506E39 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		FDCBF3561F27BFB500E60128 /* LaunchScreen.storyboard */ = {
@@ -281,7 +216,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_SWIFT_FLAGS = "";
@@ -328,10 +263,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -345,12 +281,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = DownloadManagerDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.seedante.Swift.DownloadManagerDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -361,11 +300,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = DownloadManagerDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.seedante.Swift.DownloadManagerDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
@@ -391,6 +333,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		3704AACC2B0E3D1400DD394E /* XCRemoteSwiftPackageReference "SDEDownloadManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/maziar/SDEDownloadManager.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
 	};
 	rootObject = FDCBF3421F27BFB500E60128 /* Project object */;
 }
