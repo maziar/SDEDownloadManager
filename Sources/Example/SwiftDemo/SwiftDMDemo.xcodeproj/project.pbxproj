@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3704AB152B0E423700DD394E /* SDEDownloadManager in Frameworks */ = {isa = PBXBuildFile; productRef = 3704AB142B0E423700DD394E /* SDEDownloadManager */; };
 		FDCBF34E1F27BFB500E60128 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCBF34D1F27BFB500E60128 /* AppDelegate.swift */; };
 		FDCBF3551F27BFB500E60128 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FDCBF3541F27BFB500E60128 /* Assets.xcassets */; };
 		FDCBF3581F27BFB500E60128 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDCBF3561F27BFB500E60128 /* LaunchScreen.storyboard */; };
@@ -42,17 +43,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3704AB152B0E423700DD394E /* SDEDownloadManager in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3704AB132B0E423700DD394E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		FDCBF3411F27BFB500E60128 = {
 			isa = PBXGroup;
 			children = (
 				FDCBF34C1F27BFB500E60128 /* DownloadManagerDemo */,
 				FDCBF34B1F27BFB500E60128 /* Products */,
+				3704AB132B0E423700DD394E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -95,6 +105,7 @@
 			);
 			name = SwiftDMDemo;
 			packageProductDependencies = (
+				3704AB142B0E423700DD394E /* SDEDownloadManager */,
 			);
 			productName = DownloadManagerDemo;
 			productReference = FDCBF34A1F27BFB500E60128 /* SwiftDMDemo.app */;
@@ -344,6 +355,14 @@
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3704AB142B0E423700DD394E /* SDEDownloadManager */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3704AACC2B0E3D1400DD394E /* XCRemoteSwiftPackageReference "SDEDownloadManager" */;
+			productName = SDEDownloadManager;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FDCBF3421F27BFB500E60128 /* Project object */;
 }

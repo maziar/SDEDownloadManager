@@ -49,48 +49,12 @@ import SDEDownloadManager
  If apache server is lanched already, restart it: "sudo apachectl restart".
  */
 var candidateTaskURLStringList: [String] = [
-    "http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8",
-    
-    // Auth: ServerTrust
-    "https://developer.apple.com/sample-code/wwdc/2015/downloads/Advanced-NSOperations.zip",
-    "https://codeload.github.com/seedante/OptimizationForOffscreenRender/zip/master",
-        
-    // WWDC 2016
-    "http://devstreaming.apple.com/videos/wwdc/2016/402h429l9d0hy98c9m6/402/images/402_734x413.jpg",
-    "http://devstreaming.apple.com/videos/wwdc/2016/402h429l9d0hy98c9m6/402/402_whats_new_in_swift.pdf",
-    "http://devstreaming.apple.com/videos/wwdc/2016/402h429l9d0hy98c9m6/402/402_hd_whats_new_in_swift.mp4?dl=1",
-    "http://devstreaming.apple.com/videos/wwdc/2016/402h429l9d0hy98c9m6/402/402_sd_whats_new_in_swift.mp4?dl=1",
-
-    "http://devstreaming.apple.com/videos/wwdc/2016/711tlraheg74mofg3uq/711/images/711_734x413.jpg",
-    "http://devstreaming.apple.com/videos/wwdc/2016/711tlraheg74mofg3uq/711/711_nsurlsession_new_features_and_best_practices.pdf",
-    "http://devstreaming.apple.com/videos/wwdc/2016/711tlraheg74mofg3uq/711/711_hd_nsurlsession_new_features_and_best_practices.mp4?dl=1",
-    "http://devstreaming.apple.com/videos/wwdc/2016/711tlraheg74mofg3uq/711/711_sd_nsurlsession_new_features_and_best_practices.mp4?dl=1",
-    
-    // WWDC 2015
-    "http://devstreaming.apple.com/videos/wwdc/2015/106z3yjwpfymnauri96m/106/images/106_734x413.jpg",
-    "http://devstreaming.apple.com/videos/wwdc/2015/106z3yjwpfymnauri96m/106/106_whats_new_in_swift.pdf?dl=1",
-    "http://devstreaming.apple.com/videos/wwdc/2015/106z3yjwpfymnauri96m/106/106_hd_whats_new_in_swift.mp4?dl=1",
-    "http://devstreaming.apple.com/videos/wwdc/2015/106z3yjwpfymnauri96m/106/106_sd_whats_new_in_swift.mp4?dl=1",
-    
-    "http://devstreaming.apple.com/videos/wwdc/2015/711y6zlz0ll/711/images/711_734x413.jpg",
-    "http://devstreaming.apple.com/videos/wwdc/2015/711y6zlz0ll/711/711_networking_with_nsurlsession.pdf?dl=1",
-    "http://devstreaming.apple.com/videos/wwdc/2015/711y6zlz0ll/711/711_hd_networking_with_nsurlsession.mp4?dl=1",
-    "http://devstreaming.apple.com/videos/wwdc/2015/711y6zlz0ll/711/711_sd_networking_with_nsurlsession.mp4?dl=1",
-    
-    "http://devstreaming.apple.com/videos/wwdc/2015/2267p2ni281ba/226/images/226_734x413.jpg",
-    "http://devstreaming.apple.com/videos/wwdc/2015/2267p2ni281ba/226/226_advanced_nsoperations.pdf?dl=1",
-    "http://devstreaming.apple.com/videos/wwdc/2015/2267p2ni281ba/226/226_hd_advanced_nsoperations.mp4?dl=1",
-    "http://devstreaming.apple.com/videos/wwdc/2015/2267p2ni281ba/226/226_sd_advanced_nsoperations.mp4?dl=1",
-    "https://developer.apple.com/sample-code/wwdc/2015/downloads/Advanced-NSOperations.zip",
-
-    // WWDC 2014
-    "http://devstreaming.apple.com/videos/wwdc/2014/402xxgg8o88ulsr/402/402_introduction_to_swift.pdf",
-    "http://devstreaming.apple.com/videos/wwdc/2014/402xxgg8o88ulsr/402/402_hd_introduction_to_swift.mov",
-    "http://devstreaming.apple.com/videos/wwdc/2014/402xxgg8o88ulsr/402/402_sd_introduction_to_swift.mov",
-    
-    "http://devstreaming.apple.com/videos/wwdc/2014/707xx1o5tdjnvg9/707/707_whats_new_in_foundation_networking.pdf",
-    "http://devstreaming.apple.com/videos/wwdc/2014/707xx1o5tdjnvg9/707/707_hd_whats_new_in_foundation_networking.mov",
-    "http://devstreaming.apple.com/videos/wwdc/2014/707xx1o5tdjnvg9/707/707_sd_whats_new_in_foundation_networking.mov",
+    "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/HT1425/sample_iPod.m4v.zip",
+    "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/HT1425/sample_iTunes.mov.zip",
+    "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/HT1425/sample_mpeg4.mp4.zip",
+    "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/HT1425/sample_3GPP.3gp.zip",
+    "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/HT1425/sample_3GPP2.3g2.zip",
+    "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/HT1425/sample_mpeg2.m2v.zip"
 ]
 
 extension DeleteMode{
