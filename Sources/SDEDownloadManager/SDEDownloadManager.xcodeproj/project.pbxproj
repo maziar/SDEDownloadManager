@@ -10,11 +10,6 @@
 		FD3A822C1F6BD3570087097A /* SDEDownloadManager.h in Headers */ = {isa = PBXBuildFile; fileRef = FD3A822B1F6BD3570087097A /* SDEDownloadManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FD4D68281F71630C00F12E53 /* ThumbnailCacher.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4D68271F71630C00F12E53 /* ThumbnailCacher.swift */; };
 		FDA27D011F27CCF5001959C6 /* SDEDownloadManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDFCB9CB1F27BB7200D06E12 /* SDEDownloadManager.framework */; };
-		FDA27D0D1F27CD53001959C6 /* SingleTaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA27D081F27CD53001959C6 /* SingleTaskTests.swift */; };
-		FDA27D0E1F27CD53001959C6 /* MultipleTasksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA27D091F27CD53001959C6 /* MultipleTasksTests.swift */; };
-		FDA27D0F1F27CD53001959C6 /* ControlDownloadCountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA27D0A1F27CD53001959C6 /* ControlDownloadCountTests.swift */; };
-		FDA27D101F27CD53001959C6 /* LoadAndSavePerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA27D0B1F27CD53001959C6 /* LoadAndSavePerformanceTests.swift */; };
-		FDA27D111F27CD53001959C6 /* TestShare.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA27D0C1F27CD53001959C6 /* TestShare.swift */; };
 		FDCBF37C1F27C3AD00E60128 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCBF3721F27C3AD00E60128 /* TableViewController.swift */; };
 		FDCBF37D1F27C3AD00E60128 /* DownloadTrackerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCBF3731F27C3AD00E60128 /* DownloadTrackerCell.swift */; };
 		FDCBF37E1F27C3AD00E60128 /* DownloadListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCBF3741F27C3AD00E60128 /* DownloadListController.swift */; };
@@ -22,7 +17,6 @@
 		FDCBF3811F27C3AD00E60128 /* SortViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCBF3771F27C3AD00E60128 /* SortViewController.swift */; };
 		FDCBF3821F27C3AD00E60128 /* RestoreTaskController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCBF3781F27C3AD00E60128 /* RestoreTaskController.swift */; };
 		FDCBF3831F27C3AD00E60128 /* URLPickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCBF3791F27C3AD00E60128 /* URLPickerController.swift */; };
-		FDCBF38B1F27C3EA00E60128 /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCBF3851F27C3EA00E60128 /* DownloadManager.swift */; };
 		FDCBF38C1F27C3EA00E60128 /* DMExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCBF3861F27C3EA00E60128 /* DMExtension.swift */; };
 		FDCBF38D1F27C3EA00E60128 /* DownloadOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCBF3871F27C3EA00E60128 /* DownloadOperation.swift */; };
 		FDCBF38E1F27C3EA00E60128 /* DownloadTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCBF3881F27C3EA00E60128 /* DownloadTracker.swift */; };
@@ -49,15 +43,7 @@
 /* Begin PBXFileReference section */
 		FD3A822B1F6BD3570087097A /* SDEDownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDEDownloadManager.h; sourceTree = "<group>"; };
 		FD4D68271F71630C00F12E53 /* ThumbnailCacher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ThumbnailCacher.swift; path = Manager/ThumbnailCacher.swift; sourceTree = "<group>"; };
-		FD84436A1F5B002C00B9E45B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FDA27CFC1F27CCF5001959C6 /* FeatureTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FeatureTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		FDA27D001F27CCF5001959C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FDA27D071F27CD53001959C6 /* FeatureTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FeatureTests-Bridging-Header.h"; sourceTree = "<group>"; };
-		FDA27D081F27CD53001959C6 /* SingleTaskTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleTaskTests.swift; sourceTree = "<group>"; };
-		FDA27D091F27CD53001959C6 /* MultipleTasksTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleTasksTests.swift; sourceTree = "<group>"; };
-		FDA27D0A1F27CD53001959C6 /* ControlDownloadCountTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControlDownloadCountTests.swift; sourceTree = "<group>"; };
-		FDA27D0B1F27CD53001959C6 /* LoadAndSavePerformanceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadAndSavePerformanceTests.swift; sourceTree = "<group>"; };
-		FDA27D0C1F27CD53001959C6 /* TestShare.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestShare.swift; sourceTree = "<group>"; };
 		FDCBF3721F27C3AD00E60128 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableViewController.swift; path = ViewController/TableViewController.swift; sourceTree = "<group>"; };
 		FDCBF3731F27C3AD00E60128 /* DownloadTrackerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DownloadTrackerCell.swift; path = ViewController/DownloadTrackerCell.swift; sourceTree = "<group>"; };
 		FDCBF3741F27C3AD00E60128 /* DownloadListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DownloadListController.swift; path = ViewController/DownloadListController.swift; sourceTree = "<group>"; };
@@ -65,7 +51,6 @@
 		FDCBF3771F27C3AD00E60128 /* SortViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SortViewController.swift; path = ViewController/SortViewController.swift; sourceTree = "<group>"; };
 		FDCBF3781F27C3AD00E60128 /* RestoreTaskController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RestoreTaskController.swift; path = ViewController/RestoreTaskController.swift; sourceTree = "<group>"; };
 		FDCBF3791F27C3AD00E60128 /* URLPickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = URLPickerController.swift; path = ViewController/URLPickerController.swift; sourceTree = "<group>"; };
-		FDCBF3851F27C3EA00E60128 /* DownloadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DownloadManager.swift; path = Manager/DownloadManager.swift; sourceTree = "<group>"; };
 		FDCBF3861F27C3EA00E60128 /* DMExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DMExtension.swift; path = Manager/DMExtension.swift; sourceTree = "<group>"; };
 		FDCBF3871F27C3EA00E60128 /* DownloadOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DownloadOperation.swift; path = Manager/DownloadOperation.swift; sourceTree = "<group>"; };
 		FDCBF3881F27C3EA00E60128 /* DownloadTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DownloadTracker.swift; path = Manager/DownloadTracker.swift; sourceTree = "<group>"; };
@@ -100,20 +85,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		FDA27CFD1F27CCF5001959C6 /* FeatureTests */ = {
-			isa = PBXGroup;
-			children = (
-				FDA27D081F27CD53001959C6 /* SingleTaskTests.swift */,
-				FDA27D091F27CD53001959C6 /* MultipleTasksTests.swift */,
-				FDA27D0A1F27CD53001959C6 /* ControlDownloadCountTests.swift */,
-				FDA27D0B1F27CD53001959C6 /* LoadAndSavePerformanceTests.swift */,
-				FDA27D0C1F27CD53001959C6 /* TestShare.swift */,
-				FDA27D001F27CCF5001959C6 /* Info.plist */,
-				FDA27D071F27CD53001959C6 /* FeatureTests-Bridging-Header.h */,
-			);
-			path = FeatureTests;
-			sourceTree = "<group>";
-		};
 		FDCBF3841F27C3BB00E60128 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -132,7 +103,6 @@
 			isa = PBXGroup;
 			children = (
 				FDCBF3891F27C3EA00E60128 /* FrameworkShare.swift */,
-				FDCBF3851F27C3EA00E60128 /* DownloadManager.swift */,
 				FDCBF3861F27C3EA00E60128 /* DMExtension.swift */,
 				FDCBF3871F27C3EA00E60128 /* DownloadOperation.swift */,
 				FDCBF3881F27C3EA00E60128 /* DownloadTracker.swift */,
@@ -158,12 +128,10 @@
 		FDFCB9C11F27BB7200D06E12 = {
 			isa = PBXGroup;
 			children = (
-				FD84436A1F5B002C00B9E45B /* Info.plist */,
 				FD3A822B1F6BD3570087097A /* SDEDownloadManager.h */,
 				FDD67D172030556E006AACAD /* Resources */,
 				FDCBF3911F27C3F600E60128 /* Manager */,
 				FDCBF3841F27C3BB00E60128 /* ViewController */,
-				FDA27CFD1F27CCF5001959C6 /* FeatureTests */,
 				FDFCB9CC1F27BB7200D06E12 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -254,6 +222,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				"ZH-Hans",
 				en,
 				"zh-Hans",
@@ -296,11 +265,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FDA27D0E1F27CD53001959C6 /* MultipleTasksTests.swift in Sources */,
-				FDA27D101F27CD53001959C6 /* LoadAndSavePerformanceTests.swift in Sources */,
-				FDA27D0D1F27CD53001959C6 /* SingleTaskTests.swift in Sources */,
-				FDA27D0F1F27CD53001959C6 /* ControlDownloadCountTests.swift in Sources */,
-				FDA27D111F27CD53001959C6 /* TestShare.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -312,7 +276,6 @@
 				FDCBF3811F27C3AD00E60128 /* SortViewController.swift in Sources */,
 				FDCBF38D1F27C3EA00E60128 /* DownloadOperation.swift in Sources */,
 				FDCBF38C1F27C3EA00E60128 /* DMExtension.swift in Sources */,
-				FDCBF38B1F27C3EA00E60128 /* DownloadManager.swift in Sources */,
 				FDCBF3831F27C3AD00E60128 /* URLPickerController.swift in Sources */,
 				FDCBF37C1F27C3AD00E60128 /* TableViewController.swift in Sources */,
 				FDCBF37D1F27C3AD00E60128 /* DownloadTrackerCell.swift in Sources */,

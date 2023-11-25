@@ -1941,7 +1941,7 @@ private let RemoveButtonTag: Int = 101
     }
     
     private func restoreActionForRow(at indexPath: IndexPath) -> UITableViewRowAction{
-        let URLString = self.downloadURLString(at: indexPath)!
+        _ = self.downloadURLString(at: indexPath)!
         
         func justDeleteRowAt(_ indexPath: IndexPath){
             self.tableView.deleteRows(at: [indexPath], with: .fade)
@@ -2971,7 +2971,7 @@ private let RemoveButtonTag: Int = 101
             DispatchQueue.global().async(execute: {
                 let deletedTasks: [String]
                 if let ips = indexPaths, let deletedIndexPaths = self.downloadManager.deleteFilesOfTasks(at: ips){
-                    deletedTasks = deletedIndexPaths.flatMap({ self.downloadManager[$0] })
+                    deletedTasks = deletedIndexPaths.compactMap({ self.downloadManager[$0] })
                 }else if let tasks = self.downloadManager.deleteFilesOfTasks(toDeleteURLStrings){
                     deletedTasks = tasks
                 }else{

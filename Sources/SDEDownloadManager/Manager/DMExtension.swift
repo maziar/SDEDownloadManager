@@ -26,6 +26,7 @@
 //
 
 import Foundation
+import UIKit
 
 @objc extension SDEDownloadManager {
     // MARK: - Subscript
@@ -42,7 +43,7 @@ import Foundation
         
         if _downloadTaskSet.count < 50 || _sortType == .manual{
             for (section, subList) in sortedURLStringsList.enumerated(){
-                if let row = subList.index(of: URLString){
+                if let row = subList.firstIndex(of: URLString){
                     return IndexPath(row: row, section: section)
                 }
             }
@@ -52,7 +53,7 @@ import Foundation
         let comparator = sorter.ascendingComparatorForType(sortType, compareWithDM: true)
         func updateSectionIndex(_ index: inout Int){
             guard let sectionTitle = sorter.rawTitleForTask(URLString, sortType: _sortType) else{return}
-            guard let sectionIndex = sectionTitleList.index(of: sectionTitle) else{return}
+            guard let sectionIndex = sectionTitleList.firstIndex(of: sectionTitle) else{return}
             index = sectionIndex
         }
         func indexInSection(_ section: Int) -> Int?{
@@ -87,14 +88,14 @@ import Foundation
                 return IndexPath(row: index, section: sectionIndex)
             }
         case .fileType:
-            if let section = sectionTitleList.index(of: fileType(ofTask: URLString)!), let index = indexInSection(section){
+            if let section = sectionTitleList.firstIndex(of: fileType(ofTask: URLString)!), let index = indexInSection(section){
                 return IndexPath(row: index, section: section)
             }
         case .manual: break
         }
         
         for (section, subList) in sortedURLStringsList.enumerated(){
-            if let row = subList.index(of: URLString){
+            if let row = subList.firstIndex(of: URLString){
                 return IndexPath(row: row, section: section)
             }
         }
@@ -650,7 +651,7 @@ import Foundation
                     if newRow != location.row{
                         userInfo[newIPKey] = IndexPath(row: newRow, section: section)
                     }
-                }else if let otherSection = sectionTitleList.index(of: titleForNewName){//move to another section
+                }else if let otherSection = sectionTitleList.firstIndex(of: titleForNewName){//move to another section
                     let ascendingTasks = _sortOrder == .ascending ? sortedURLStringsList[otherSection] : sortedURLStringsList[otherSection].reversed()
                     let insertIndex = ascendingTasks.binaryIndex(for: URLString, ascendingComparator: comparator)
                     let newRow = _sortOrder == .ascending ? insertIndex : ascendingTasks.count - insertIndex
@@ -682,7 +683,7 @@ import Foundation
                     if _sortOrder == .descending{
                         ascendingTasks.reverse()
                     }
-                    let index = ascendingTasks.binaryIndex(of: URLString, ascendingComparator: comparator) ?? ascendingTasks.index(of: URLString)!
+                    let index = ascendingTasks.binaryIndex(of: URLString, ascendingComparator: comparator) ?? ascendingTasks.firstIndex(of: URLString)!
                     ascendingTasks.remove(at: index)
                 }
 

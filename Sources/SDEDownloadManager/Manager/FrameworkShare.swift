@@ -155,6 +155,8 @@ extension URLSessionTask.State{
             return "Canceling"
         case .completed:
             return "Completed"
+        @unknown default:
+            return "Running"
         }
     }
 }

@@ -86,7 +86,7 @@ internal class ListSorter {
                 taskSet.forEach({
                     if let index = sortType2Tasks[type]!.binaryIndex(of: $0, ascendingComparator: comparator){
                         _ = sortType2Tasks[type]!.remove(at: index)
-                    }else if let index = sortType2Tasks[type]!.index(of: $0){
+                    }else if let index = sortType2Tasks[type]!.firstIndex(of: $0){
                         _ = sortType2Tasks[type]!.remove(at: index)
                     }
                 })
@@ -476,7 +476,7 @@ internal class ListSorter {
             handleWaittingTaskForType(.addTime)
             
             if split{
-                var descendingTasks = Array(sortType2Tasks[type]!.reversed())
+                let descendingTasks = Array(sortType2Tasks[type]!.reversed())
                 var title2Tasks: Dictionary<String, NSMutableArray> = [:]
                 var titles: [String] = []
 
@@ -601,7 +601,7 @@ internal class ListSorter {
                 
                 let lastFileName = dm.fileDisplayName(ofTask: ascendingTasks.last!)!
                 let lastTitle = indexingTitleForStr(lastFileName)
-                var lastTitleIndex = indexTitles.index(of: lastTitle)!
+                var lastTitleIndex = indexTitles.firstIndex(of: lastTitle)!
                 if lastTitle == up3{
                     let firstFileName = dm.fileDisplayName(ofTask: ascendingTasks.first!)!
                     let firstTitle = indexingTitleForStr(firstFileName)
@@ -801,7 +801,7 @@ internal class ListSorter {
     func ascendingTasksByFileType(on taskSet: Set<String>) -> [(title: String, tasks: NSMutableArray)]{        
         let taskAscendingComparator: (String, String) -> Bool = fileNameAscendingComparator
         // Dictionary + NSMutableArray is better than Dictionary + Array in sorting 10000 items.
-        var fileArchive: Dictionary<String, NSMutableArray> = [ImageType: [],
+        let fileArchive: Dictionary<String, NSMutableArray> = [ImageType: [],
                                                                AudioType: [],
                                                                VideoType: [],
                                                                DocumentType: [],
@@ -1148,7 +1148,7 @@ internal class ListSorter {
             }
             
             
-            var fileArchive: Dictionary<String, NSMutableArray> = [ImageType: [],
+            let fileArchive: Dictionary<String, NSMutableArray> = [ImageType: [],
                                                                    AudioType: [],
                                                                    VideoType: [],
                                                                    DocumentType: [],

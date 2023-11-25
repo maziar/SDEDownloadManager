@@ -193,7 +193,7 @@ import UIKit
             // If delegateQueue is nil, in session delegate, after a method is returned, next methos is called;
             // otherwise, they are called in call orders, but don't need to wait last method return.
             self.downloadSession = URLSession(configuration: configuration,
-                                              delegate: downloadDelegate as? URLSessionDelegate,
+                                              delegate: downloadDelegate,
                                               delegateQueue: OperationQueue())
             super.init()
             downloadDelegate.downloadManager = self
@@ -968,7 +968,7 @@ import UIKit
         let futureTitle = "Time.Future"
         
         if sectioningAddTimeList{
-            if let sectionIndex = sectionTitleList.index(of: todayTitle){
+            if let sectionIndex = sectionTitleList.firstIndex(of: todayTitle){
                 let rowCount = sortedURLStringsList[sectionIndex].count
                 if sortOrder == .ascending{
                     sortedURLStringsList[sectionIndex].append(contentsOf: newTasks)
@@ -981,7 +981,7 @@ import UIKit
                         insertedIndexPaths.append(IndexPath(row: row, section: sectionIndex))
                     })
                 }
-            }else if let futureIndex = sectionTitleList.index(of: futureTitle){
+            }else if let futureIndex = sectionTitleList.firstIndex(of: futureTitle){
                 if sortOrder == .descending{
                     sectionTitleList.insert(todayTitle, at: 1)
                     sortedURLStringsList.insert(newTasks.reversed(), at: 1)
@@ -3264,7 +3264,7 @@ import UIKit
         guard !URLStrings.isEmpty else{return nil}
         guard !trashList.isEmpty else{return nil}
 
-        let indexes = Set(URLStrings).flatMap({trashList.index(of: $0)}).sorted(by: >)
+        let indexes = Set(URLStrings).compactMap({trashList.firstIndex(of: $0)}).sorted(by: >)
         guard indexes.isEmpty == false else{return nil}
 
         toDeleteCount = indexes.count
@@ -3314,7 +3314,7 @@ import UIKit
     public func restoreToDeleteTasks(_ URLStrings: [String], toLocation indexPath: IndexPath = IndexPath(row: 0, section: 0)) -> [IndexPath]?{
         let ordered = _sortType == .manual ? true : false
         guard let validTasks = collectValidTasksIn(URLStrings, comparisonSet: Set(trashList), ordered: ordered) else {return nil}
-        let indexs = validTasks.flatMap({trashList.index(of: $0)})
+        let indexs = validTasks.compactMap({trashList.firstIndex(of: $0)})
         
         indexs.sorted(by: { $0 > $1 }).forEach({ trashList.remove(at: $0) })
         _downloadTaskSet.formUnion(validTasks)
